@@ -20,7 +20,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_get_line(char *ptr, int fd);
+char	*ft_get_file(char *ptr, int fd);
 char	*ft_extracted_line(char *ptr);
 char	*ft_remaining(char *ptr);
 char	*ft_strcpy(char *src, char *dest, int flag);

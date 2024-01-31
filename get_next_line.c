@@ -12,26 +12,26 @@
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char *ptr, int fd)
+char	*ft_get_file(char *ptr, int fd)
 {
 	char	*str_temp;
-	int		readed;
+	int		bytes_read;
 
 	str_temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!str_temp)
 		return (NULL);
-	readed = 1;
-	while (!ft_charcmp(ptr, '\n') && readed > 0)
+	bytes_read = 1;
+	while (!ft_charcmp(ptr, '\n') && bytes_read > 0)
 	{
-		readed = read(fd, str_temp, BUFFER_SIZE);
-		if (readed < 0)
+		bytes_read = read(fd, str_temp, BUFFER_SIZE);
+		if (bytes_read < 0)
 		{
 			if (ptr)
 				free(ptr);
 			free(str_temp);
 			return (NULL);
 		}
-		str_temp[readed] = '\0';
+		str_temp[bytes_read] = '\0';
 		ptr = ft_strjoin(ptr, str_temp);
 	}
 	free(str_temp);
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	ptr = ft_get_line(ptr, fd);
+	ptr = ft_get_file(ptr, fd);
 	if (!ptr)
 	{
 		free(ptr);

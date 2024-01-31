@@ -23,7 +23,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_get_line(char *ptr, int fd);
+char	*ft_get_file(char *ptr, int fd);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_extracted_line(char *s_buffer);
 char	*ft_strcpy(char *src, char *dest, int nl_stop);

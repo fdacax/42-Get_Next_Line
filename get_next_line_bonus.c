@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_get_line(char *ptr, int fd)
+char	*ft_get_file(char *ptr, int fd)
 {
 	char	*str_temp;
 	int		bytes_read;
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	ptr[fd] = ft_get_line(ptr[fd], fd);
+	ptr[fd] = ft_get_file(ptr[fd], fd);
 	if (!ptr[fd])
 	{
 		free(ptr[fd]);
