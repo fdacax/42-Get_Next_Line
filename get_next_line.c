@@ -106,15 +106,10 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("teste.txt", O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Erro ao abrir o arquivo");
-		return (1);
-	}
+	fd = open("get_next_line.c", O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("Linha lida: %s\n", line);
+		printf("%s", line);
 		free(line);
 	}
 	close(fd);
