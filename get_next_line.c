@@ -6,7 +6,7 @@
 /*   By: fedacax <fedacax@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 13:36:42 by fedacax           #+#    #+#             */
-/*   Updated: 2026/11/24 16:54:47 by fedacax          ###   ########.fr       */
+/*   Updated: 2026/11/25 18:44:50 by fedacax          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*find_nl(int fd, char *ptr)
 {
 	char	*temp;
 	int		read_bytes;
-	
+
 	temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!temp)
 		return (NULL);
@@ -38,37 +38,81 @@ char	*find_nl(int fd, char *ptr)
 	return (ptr);
 }
 
+char	*copynl(char *ptr)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (!ptr || !ptr[i])
+		return (NULL);
+	while (ptr[i] && ptr[i] != SEPARATOR)
+		i++;
+	if (ptr[i] == SEPARATOR)
+		i++;
+	str = ft_calloc((i + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	str[i] = 0;
+	while (--i >= 0)
+	{
+		str[i] = ptr[i];
+	}
+	return (str);
+}
+
+char	*remaning(char *ptr)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	while (ptr[i] && ptr[i] != SEPARATOR)
+		i++;
+	if (!ptr[i])
+	{
+		free(ptr);
+		return (NULL);
+	}
+	i++;
+	str = ft_calloc((ft_strlen(&ptr[i]) + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	str = ft_strjoin(str, &ptr[i]);
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*ptr;
-	//char		*line;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	ptr = find_nl(fd, ptr);
-	printf ("%s\n", ptr);
-	return ("void");
+	if (!ptr)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	line = copynl(ptr);
+	ptr = remaning(ptr);
+	return (line);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	int		fd;
 	char	*line;
 
 	fd = open("test.txt", O_RDONLY);
-	line = get_next_line(fd);
-/* 	while ((line = get_next_line(fd)))
+	while (line)
 	{
+		line = get_next_line(fd);
 		printf("%s", line);
+		usleep(100000);
 		free(line);
-	} */
-	close(fd);
-	return(0);
-}
-
-/* 
-	logica a ser implementada:
-	usar read e aloc dntr do ptr ate != \n ou \0
-	andar ate \n + 1;
-	Salvar o resto dentro de uma variavel static.
-*/
+	}
+	close (fd);
+	return (0);
+} */

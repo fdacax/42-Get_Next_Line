@@ -6,7 +6,7 @@
 /*   By: fedacax <fedacax@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 13:38:10 by fedacax           #+#    #+#             */
-/*   Updated: 2026/11/24 16:53:15 by fedacax          ###   ########.fr       */
+/*   Updated: 2026/11/25 17:23:15 by fedacax          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ size_t	ft_strlen(const char *str)
 int	ft_charcmp(const char *str)
 {
 	int	i;
-
 
 	i = 0;
 	while (str && str[i])
