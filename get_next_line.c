@@ -6,13 +6,13 @@
 /*   By: fedacax <fedacax@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 13:36:42 by fedacax           #+#    #+#             */
-/*   Updated: 2026/11/25 18:44:50 by fedacax          ###   ########.fr       */
+/*   Updated: 2026/11/27 16:21:41 by fedacax          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*find_nl(int fd, char *ptr)
+char	*read_file(char *ptr, int fd)
 {
 	char	*temp;
 	int		read_bytes;
@@ -21,7 +21,7 @@ char	*find_nl(int fd, char *ptr)
 	if (!temp)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_charcmp(ptr) && read_bytes > 0)
+	while (!find_sep(ptr) && read_bytes > 0)
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE);
 		if (read_bytes < 0)
@@ -38,7 +38,7 @@ char	*find_nl(int fd, char *ptr)
 	return (ptr);
 }
 
-char	*copynl(char *ptr)
+char	*extract_line(char *ptr)
 {
 	char	*str;
 	int		i;
@@ -53,15 +53,12 @@ char	*copynl(char *ptr)
 	str = ft_calloc((i + 1), sizeof(char));
 	if (!str)
 		return (NULL);
-	str[i] = 0;
 	while (--i >= 0)
-	{
 		str[i] = ptr[i];
-	}
 	return (str);
 }
 
-char	*remaning(char *ptr)
+char	*update_stash(char *ptr)
 {
 	char	*str;
 	int		i;
@@ -79,6 +76,7 @@ char	*remaning(char *ptr)
 	if (!str)
 		return (NULL);
 	str = ft_strjoin(str, &ptr[i]);
+	free(ptr);
 	return (str);
 }
 
@@ -87,16 +85,16 @@ char	*get_next_line(int fd)
 	static char	*ptr;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	ptr = find_nl(fd, ptr);
+	ptr = read_file(ptr, fd);
 	if (!ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	line = copynl(ptr);
-	ptr = remaning(ptr);
+	line = extract_line(ptr);
+	ptr = update_stash(ptr);
 	return (line);
 }
 

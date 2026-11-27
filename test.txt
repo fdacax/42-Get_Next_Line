@@ -1,5 +1,5 @@
 === GNL STRESS TEST (42 PORTO) ===
-drogaasdasdasdasdasdasdasdasdasdasdas
+
         :::      ::::::::         ::::::::  :::::::::   ::::::::
       :+:      :+:    :+:        :+:    :+: :+:    :+: :+:    :+:
     +:+ +:+         +:+          +:+    +:+ +:+    +:+ +:+    +:+
@@ -9,7 +9,7 @@ drogaasdasdasdasdasdasdasdasdasdasdas
     ###   ########                ########  ###         ########
 
       /\_/\
-     ( o.o )   <- gato revisor da Moulinette
+     ( o.o )
       > ^ <
      /|   |\
     (_|   |_)

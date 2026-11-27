@@ -6,7 +6,7 @@
 /*   By: fedacax <fedacax@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/24 13:33:58 by fedacax           #+#    #+#             */
-/*   Updated: 2026/11/25 17:06:11 by fedacax          ###   ########.fr       */
+/*   Updated: 2026/11/27 15:54:10 by fedacax          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@
 /* ************************************************************************** */
 
 char	*get_next_line(int fd);
-int		main(void);
+char	*read_file(char *ptr, int fd);
+char	*extract_line(char *ptr);
+char	*update_stash(char *ptr);
 
 /* ************************************************************************** */
 /*                                   utils                                    */
@@ -42,6 +44,6 @@ int		main(void);
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char *s1, const char *s2);
-int		ft_charcmp(const char *str);
+int		find_sep(const char *str);
 
 #endif
